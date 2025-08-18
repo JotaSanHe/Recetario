@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { Recipes } from '@/data/recipes';
+import type { PageProps } from "next";
 
-export default function RecipePage({ params }: { params: { id: string } }) {
+export default function RecipePage({ params }: PageProps<{ id: string }>) {
     const receta = Recipes.find(r => r.id === params.id);
 
     if (!receta) {
