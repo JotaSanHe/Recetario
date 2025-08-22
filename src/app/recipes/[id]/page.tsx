@@ -2,13 +2,12 @@ import Link from "next/link";
 import { Recipes } from "@/data/recipes";
 
 interface RecipePageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
-export default function RecipePage({ params }: RecipePageProps) {
-  const receta = Recipes.find((r) => r.id === params.id);
+export default async function RecipePage({ params }: RecipePageProps) {
+  const { id } = await params;
+  const receta = Recipes.find((r) => r.id === id);
 
   if (!receta) {
     return (
